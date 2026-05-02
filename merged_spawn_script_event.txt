@@ -1,0 +1,56 @@
+﻿//============================================================
+// 自動生成 — DIVINE 撈 SPAWN  (merged_spawn_script_event.txt (活動怪候選))
+// Generated: 2026-05-02 23:57:58
+//============================================================
+//
+// 【兩個資料源】
+//   A = project_a_map_scrape  (網頁爬 divine-pride.net/database/map)
+//   B = project_b_api_mob     (API 打 /api/database/Map + Monster)
+//
+// 【合併規則】A 是骨架，B 是 X 光片：
+//   - map 清單 / mob 清單  ........... 取自 A（A 已用 hasSpawn=on 過濾）
+//   - 中文 mob 名 ..................... 取自 A（DP 網頁的 twRO 翻譯）
+//   - amount（總量）................... 取自 A（A 已聚合，符合 rA 慣例）
+//   - is_boss .......................... 取自 B（API stats.mvp/class 較準）
+//                                       A 沒判 B 判到 → 行尾標 boss<-B
+//   - respawn_ms ....................... 取自 B（API 真實值: 5000/180000/3600000）
+//                                       B 沒給 → fallback 1000；boss → 固定 3600000
+//   - respawn_var, event_handler ....... 一般 0/0；boss 5000/0
+//                                       (event 一律 0, 通用版輸出。需要掛 MVPPoint 之類
+//                                        伺服器專用 handler 請自行 sed/replace 處理)
+//   - x, y, xs, ys ..................... 永遠 0,0,0,0（DP 不提供座標）
+//
+// 【活動怪偵測】見 merge/event_detector.py：
+//   多訊號評分（map prefix / mapType=26 / dbname 含 XMAS·EVT·... /
+//   mob 名含 聖誕·萬聖·... / dbname=DUMMY_*），score >= 3 視為候選。
+//   候選永遠單獨輸出 merged_spawn_script_event.txt；
+//   主檔: 不含活動怪
+//
+// 【行尾註記速查】
+//   // boss<-B           → A 沒判定為 boss、B 修正了
+//   // fallback:ko/en/ja → 沒中文，用其他語言名
+//   // 活動?(...)        → event_detector 判定為活動怪候選
+//
+// 【格式】<map>,<x>,<y>,<xs>,<ys> \t monster|boss_monster \t <name> \t
+//        <mobid>,<amount>,<respawn_ms>,<var>,<event>
+//
+// 【統計】2 maps · 5 spawns · 5 bosses · 5 活動怪候選
+//        Boss flag 被 B 覆蓋: 4 筆
+//
+// 【名稱語系】DP 翻譯覆蓋率（zh = 有中文; 其他都是 fallback 註記）
+//        zh    1 (20.0%)  ko    0 (0.0%)  en    4 (80.0%)  ja    0 (0.0%)
+//        非中文比例多 = DP 還沒翻新副本（如 ch1_*, for_dun, ab_*）
+//============================================================
+
+//==================================================
+// iz_ac01 - 克里圖拉學院1樓
+//==================================================
+iz_ac01,0,0,0,0	boss_monster	Lv 10	2408,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+iz_ac01,0,0,0,0	boss_monster	Lv 10 (火屬性)	2413,1,3600000,5000,0	// 活動?(score=10, dbname=DUMMY_*)
+
+//==================================================
+// prontera - 盧恩 米德加茲王國首都普隆德拉
+//==================================================
+prontera,0,0,0,0	boss_monster	Lv 50	2409,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+prontera,0,0,0,0	boss_monster	Lv 100	2410,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+prontera,0,0,0,0	boss_monster	Lv 150	2411,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)

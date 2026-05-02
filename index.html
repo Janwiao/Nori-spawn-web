@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NORI · DIVINE 撈 SPAWN — 輸出檔總覽</title>
+<style>
+    body { font-family: -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif;
+           background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+           color: #e2e8f0; min-height: 100vh; margin: 0; padding: 40px 20px; }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    h1 { margin: 0 0 4px; font-size: 1.8em;
+         background: linear-gradient(90deg, #fbbf24, #f59e0b);
+         -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .brand { font-size: 0.85em; color: #fbbf24; letter-spacing: 0.2em;
+             margin-bottom: 4px; font-weight: 600; }
+    .sub { color: #94a3b8; margin-bottom: 32px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card-wrap { position: relative;
+                 background: rgba(255,255,255,0.06);
+                 border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 10px;
+                 transition: all 0.15s ease; }
+    .card-wrap:hover { background: rgba(255,255,255,0.12);
+                       border-color: rgba(251,191,36,0.4);
+                       transform: translateY(-2px); }
+    a.card { display: block; padding: 20px 60px 20px 22px;
+             text-decoration: none; color: inherit; }
+    .card .title { font-size: 1.05em; font-weight: 600;
+                   color: #fbbf24; margin-bottom: 4px; }
+    .card .desc { font-size: 0.9em; color: #cbd5e1; line-height: 1.5; }
+    .card .ext { display: inline-block; font-size: 0.75em; padding: 1px 7px;
+                 border-radius: 3px; background: rgba(251,191,36,0.2);
+                 color: #fbbf24; margin-left: 6px; }
+    a.dl-btn { position: absolute; top: 14px; right: 14px;
+               width: 32px; height: 32px; line-height: 30px; text-align: center;
+               border-radius: 6px; text-decoration: none;
+               color: #cbd5e1; background: rgba(255,255,255,0.08);
+               border: 1px solid rgba(255,255,255,0.12);
+               font-size: 1.1em;
+               transition: all 0.15s ease; }
+    a.dl-btn:hover { background: #fbbf24; color: #1e293b;
+                     border-color: #fbbf24; transform: scale(1.08); }
+    .footer { margin-top: 40px; font-size: 0.82em; color: #64748b;
+              text-align: center; line-height: 1.7; }
+    .footer .portal-link { display: inline-block; margin-bottom: 8px;
+                            padding: 6px 16px; border-radius: 999px;
+                            background: rgba(251,191,36,0.12);
+                            border: 1px solid rgba(251,191,36,0.3);
+                            color: #fbbf24; text-decoration: none;
+                            font-size: 0.95em; font-weight: 500;
+                            transition: all 0.15s ease; }
+    .footer .portal-link:hover { background: #fbbf24; color: #1e293b;
+                                  transform: translateY(-1px); }
+    .badge-tip { display: inline-block; font-size: 0.78em; padding: 2px 8px;
+                 border-radius: 4px; background: #f59e0b; color: #1e293b; font-weight: 600; }
+    .legend { font-size: 0.78em; color: #64748b; margin-top: 6px; }
+    section.history { margin-top: 36px; background: rgba(255,255,255,0.04);
+                      border: 1px solid rgba(255,255,255,0.08);
+                      border-radius: 10px; padding: 16px 22px; }
+    section.history h2 { margin: 0 0 12px; font-size: 1.05em; color: #fbbf24; }
+    section.history table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
+    section.history th { text-align: left; padding: 6px 10px; color: #94a3b8;
+                          font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    section.history td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+                          color: #cbd5e1; font-family: "Consolas", monospace; }
+    section.history td.right, section.history th.right { text-align: right; }
+    section.history tr:first-child td { color: #fbbf24; font-weight: 600; }
+    section.history p.hint { font-size: 0.78em; color: #64748b; margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="brand">NORI</div>
+    <h1>DIVINE 撈 SPAWN — 輸出檔總覽</h1>
+    <p class="sub">從 Divine-Pride 還原到 rA server 的最終 spawn 資料。
+       <span class="badge-tip">A 主 + B 輔合併版</span></p>
+    <p class="legend">點卡片 = 在瀏覽器預覽　|　點右上 ⬇ = 下載到本機</p>
+
+    <div class="grid">
+        <div class="card-wrap">
+            <a class="card" href="merged_preview.html">
+                <div class="title">主預覽 <span class="ext">.html</span></div>
+                <div class="desc">可瀏覽的合併預覽，含 boss / 活動怪篩選按鈕、回 DP 連結。日常用這個。</div>
+            </a>
+            <a class="dl-btn" href="merged_preview.html" download title="下載 merged_preview.html">⬇</a>
+        </div>
+
+        <div class="card-wrap">
+            <a class="card" href="merged_spawn_script.txt">
+                <div class="title">主腳本檔 <span class="ext">.txt</span></div>
+                <div class="desc">rA <code>_mob.txt</code> 風格主檔，預設不含活動怪。直接餵給 server 用。</div>
+            </a>
+            <a class="dl-btn" href="merged_spawn_script.txt" download title="下載 merged_spawn_script.txt">⬇</a>
+        </div>
+
+        <div class="card-wrap">
+            <a class="card" href="merged_spawn_script_event.txt">
+                <div class="title">活動怪候選 <span class="ext">.txt</span></div>
+                <div class="desc">事件 / 訓練木樁 / 疑似活動怪獨立輸出，給人工檢視用。</div>
+            </a>
+            <a class="dl-btn" href="merged_spawn_script_event.txt" download title="下載 merged_spawn_script_event.txt">⬇</a>
+        </div>
+
+        <div class="card-wrap">
+            <a class="card" href="merged_spawn_data.json">
+                <div class="title">結構化資料 <span class="ext">.json</span></div>
+                <div class="desc">含每個欄位的來源（A/B/規則），給後續工具讀回 / diff 使用。</div>
+            </a>
+            <a class="dl-btn" href="merged_spawn_data.json" download title="下載 merged_spawn_data.json">⬇</a>
+        </div>
+
+        
+    </div>
+
+    <section class='history'><h2>📜 最近運行紀錄</h2><table><thead><tr><th>時間</th><th class='right'>主檔 spawns</th><th class='right'>活動候選</th><th class='right'>bosses</th><th class='right'>override (常/活)</th></tr></thead><tbody><tr><td>2026-05-02 23:57:58</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 23:53:26</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:12:31</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:12:07</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:11:20</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:10:00</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:06:43</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr><tr><td>2026-05-02 16:05:35</td><td class='right'>3094</td><td class='right'>5</td><td class='right'>406</td><td class='right'>28/0</td></tr></tbody></table><p class='hint'>橘色 (+N/-N) = 與上次相比的變化。最多保留最近 20 次。</p></section>
+
+    <div class="footer">
+        <a class="portal-link" href="https://rotools.nori-labs.com/">前往 Nori-tools 主站 →</a><br>
+        檔頭都包含完整生成邏輯註解；合併規則總覽見 MERGE_LOGIC.md。<br>
+        資料來源：<a href="https://www.divine-pride.net/" style="color:#94a3b8">divine-pride.net</a>　·
+        工具：<span style="color:#fbbf24">NORI</span> DIVINE 撈 SPAWN
+    </div>
+</div>
+</body>
+</html>

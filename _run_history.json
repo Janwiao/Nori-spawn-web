@@ -1,0 +1,156 @@
+[
+  {
+    "timestamp": "2026-05-02T15:42:58",
+    "maps": 451,
+    "spawns": 3072,
+    "bosses": 402,
+    "events": 27,
+    "boss_corrections": 4,
+    "overrides_normal": 6,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T15:43:10",
+    "maps": 451,
+    "spawns": 3072,
+    "bosses": 402,
+    "events": 27,
+    "boss_corrections": 4,
+    "overrides_normal": 6,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T15:51:39",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T15:59:17",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T15:59:17",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:03:30",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:05:35",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:06:43",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:10:00",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:11:20",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:12:07",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T16:12:31",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T23:53:26",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-05-02T23:57:58",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  }
+]
