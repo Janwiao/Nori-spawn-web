@@ -1,16 +1,5 @@
 [
   {
-    "timestamp": "2026-05-02T15:51:39",
-    "maps": 454,
-    "spawns": 3094,
-    "bosses": 406,
-    "events": 5,
-    "boss_corrections": 4,
-    "overrides_normal": 28,
-    "overrides_event": 0,
-    "ground_truth_size": 0
-  },
-  {
     "timestamp": "2026-05-02T15:59:17",
     "maps": 454,
     "spawns": 3094,
@@ -210,6 +199,17 @@
   },
   {
     "timestamp": "2026-06-01T18:49:27",
+    "maps": 454,
+    "spawns": 3094,
+    "bosses": 406,
+    "events": 5,
+    "boss_corrections": 4,
+    "overrides_normal": 28,
+    "overrides_event": 0,
+    "ground_truth_size": 0
+  },
+  {
+    "timestamp": "2026-06-01T19:50:06",
     "maps": 454,
     "spawns": 3094,
     "bosses": 406,
