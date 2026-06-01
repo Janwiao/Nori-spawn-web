@@ -1,6 +1,6 @@
 ﻿//============================================================
 // 自動生成 — DIVINE 撈 SPAWN  (merged_spawn_script_event.txt (活動怪候選))
-// Generated: 2026-06-01 14:34:52
+// Generated: 2026-06-01 18:49:27
 //============================================================
 //
 // 【兩個資料源】
@@ -13,8 +13,9 @@
 //   - amount（總量）................... 取自 A（A 已聚合，符合 rA 慣例）
 //   - is_boss .......................... 取自 B（API stats.mvp/class 較準）
 //                                       A 沒判 B 判到 → 行尾標 boss<-B
+//   - is_mvp ........................... 取自 B（只有 MVP 才強制 amount=1）
 //   - respawn_ms ....................... 取自 B（API 真實值: 5000/180000/3600000）
-//                                       B 沒給 → fallback 1000；boss → 固定 3600000
+//                                       B 沒給 → fallback 5000；boss/MVP → boss 預設
 //   - respawn_var, event_handler ....... 一般 0/0；boss 5000/0
 //                                       (event 一律 0, 通用版輸出。需要掛 MVPPoint 之類
 //                                        伺服器專用 handler 請自行 sed/replace 處理)
@@ -45,12 +46,12 @@
 //==================================================
 // iz_ac01 - 克里圖拉學院1樓
 //==================================================
-iz_ac01,0,0,0,0	boss_monster	Lv 10	2408,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
-iz_ac01,0,0,0,0	boss_monster	Lv 10 (火屬性)	2413,1,3600000,5000,0	// 活動?(score=10, dbname=DUMMY_*)
+iz_ac01,0,0,0,0	boss_monster	Lv 10	2408,1,5000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+iz_ac01,0,0,0,0	boss_monster	Lv 10 (火屬性)	2413,1,5000,5000,0	// 活動?(score=10, dbname=DUMMY_*)
 
 //==================================================
 // prontera - 盧恩 米德加茲王國首都普隆德拉
 //==================================================
-prontera,0,0,0,0	boss_monster	Lv 50	2409,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
-prontera,0,0,0,0	boss_monster	Lv 100	2410,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
-prontera,0,0,0,0	boss_monster	Lv 150	2411,1,3600000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+prontera,0,0,0,0	boss_monster	Lv 50	2409,1,5000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+prontera,0,0,0,0	boss_monster	Lv 100	2410,1,5000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)
+prontera,0,0,0,0	boss_monster	Lv 150	2411,1,5000,5000,0	// fallback:en; 活動?(score=10, dbname=DUMMY_*)

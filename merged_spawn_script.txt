@@ -1,6 +1,6 @@
 ﻿//============================================================
 // 自動生成 — DIVINE 撈 SPAWN  (merged_spawn_script.txt (main))
-// Generated: 2026-06-01 14:34:52
+// Generated: 2026-06-01 18:49:27
 //============================================================
 //
 // 【兩個資料源】
@@ -13,8 +13,9 @@
 //   - amount（總量）................... 取自 A（A 已聚合，符合 rA 慣例）
 //   - is_boss .......................... 取自 B（API stats.mvp/class 較準）
 //                                       A 沒判 B 判到 → 行尾標 boss<-B
+//   - is_mvp ........................... 取自 B（只有 MVP 才強制 amount=1）
 //   - respawn_ms ....................... 取自 B（API 真實值: 5000/180000/3600000）
-//                                       B 沒給 → fallback 1000；boss → 固定 3600000
+//                                       B 沒給 → fallback 5000；boss/MVP → boss 預設
 //   - respawn_var, event_handler ....... 一般 0/0；boss 5000/0
 //                                       (event 一律 0, 通用版輸出。需要掛 MVPPoint 之類
 //                                        伺服器專用 handler 請自行 sed/replace 處理)
@@ -83,7 +84,7 @@ abbey01,0,0,0,0	monster	迅捷女妖	2887,3,180000,0,0
 abbey02,0,0,0,0	monster	殭屍屠戮者	1864,210,5000,0,0
 abbey02,0,0,0,0	monster	變異殭屍	1865,70,5000,0,0
 abbey02,0,0,0,0	monster	火焰顱骨	1869,21,5000,0,0
-abbey02,0,0,0,0	boss_monster	亡靈巫師	1870,1,3600000,5000,0
+abbey02,0,0,0,0	boss_monster	亡靈巫師	1870,7,5000,5000,0
 abbey02,0,0,0,0	boss_monster	墮落的大神官	1871,1,3600000,5000,0
 abbey02,0,0,0,0	monster	迅捷殭屍屠戮者	2603,3,180000,0,0
 
@@ -92,8 +93,8 @@ abbey02,0,0,0,0	monster	迅捷殭屍屠戮者	2603,3,180000,0,0
 //==================================================
 abbey03,0,0,0,0	monster	女妖	1867,30,5000,0,0
 abbey03,0,0,0,0	monster	火焰顱骨	1869,25,5000,0,0
-abbey03,0,0,0,0	boss_monster	亡靈巫師	1870,1,3600000,5000,0
-abbey03,0,0,0,0	boss_monster	貝雷傑	1873,1,3600000,5000,0
+abbey03,0,0,0,0	boss_monster	亡靈巫師	1870,60,5000,5000,0
+abbey03,0,0,0,0	boss_monster	貝雷傑	1873,1,43200000,5000,0
 abbey03,0,0,0,0	monster	菁英亡靈巫師	2736,2,180000,0,0
 
 //==================================================
@@ -132,7 +133,7 @@ abyss_03,0,0,0,0	monster	紅貝勒斯	1714,10,5000,0,0
 abyss_03,0,0,0,0	monster	灰俄希托斯	1716,10,5000,0,0
 abyss_03,0,0,0,0	monster	綠貝勒斯	1717,10,5000,0,0
 abyss_03,0,0,0,0	boss_monster	迪塔勒泰晤勒斯	1719,1,3600000,5000,0
-abyss_03,0,0,0,0	boss_monster	三頭龍	1720,1,3600000,5000,0
+abyss_03,0,0,0,0	boss_monster	三頭龍	1720,3,5000,5000,0
 abyss_03,0,0,0,0	monster	龍蛋	1721,10,5000,0,0
 abyss_03,0,0,0,0	monster	雄壯灰俄希托斯	2912,2,180000,0,0
 
@@ -282,8 +283,8 @@ anthell02,0,0,0,0	monster	雄壯白蟻	2902,2,180000,0,0
 //==================================================
 arug_dun01,0,0,0,0	monster	阿烏奴艾	1796,39,5000,0,0
 arug_dun01,0,0,0,0	monster	法恩特	1797,8,5000,0,0
-arug_dun01,0,0,0,0	boss_monster	亡靈巫師	1870,1,3600000,5000,0
-arug_dun01,0,0,0,0	monster	女妖首領	1974,39,1000,0,0
+arug_dun01,0,0,0,0	boss_monster	亡靈巫師	1870,32,3600000,5000,0
+arug_dun01,0,0,0,0	monster	女妖首領	1974,39,5000,0,0
 arug_dun01,0,0,0,0	monster	大眼怪首領	1975,39,5000,0,0
 arug_dun01,0,0,0,0	monster	狡猾女妖首領	2886,1,180000,0,0
 
@@ -466,36 +467,36 @@ bl_death,0,0,0,0	boss_monster	Lord of Death	21579,1,3600000,5000,0	// fallback:e
 //==================================================
 // bl_depth1 - 生物圈深層
 //==================================================
-bl_depth1,0,0,0,0	boss_monster	Deep Anolian	22140,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Skeleton Archer	22141,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Dragon Tail	22142,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Lava Toad	22143,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Little Fatum	22144,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Sting	22145,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Empathizer	22146,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Fire Frilldora	22147,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Holy Frus	22148,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Holy Skogul	22149,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Kapha	22150,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Skeleton Soldier	22151,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Dark Pinguicula	22152,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Pom Spider	22153,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Pray Giver	22154,1,3600000,5000,0	// fallback:en
-bl_depth1,0,0,0,0	boss_monster	Deep Wood Goblin	22155,1,3600000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Anolian	22140,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Skeleton Archer	22141,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Dragon Tail	22142,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Lava Toad	22143,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Little Fatum	22144,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Sting	22145,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Empathizer	22146,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Fire Frilldora	22147,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Holy Frus	22148,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Holy Skogul	22149,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Kapha	22150,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Skeleton Soldier	22151,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Dark Pinguicula	22152,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Pom Spider	22153,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Pray Giver	22154,25,5000,5000,0	// fallback:en
+bl_depth1,0,0,0,0	boss_monster	Deep Wood Goblin	22155,25,5000,5000,0	// fallback:en
 
 //==================================================
 // bl_depth2 - 生物圈深層-深淵
 //==================================================
-bl_depth2,0,0,0,0	boss_monster	심연의 두네이르	22252,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 나가	22253,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 에인션트 트리	22254,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 돌로카리스	22255,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 냉동 가고일	22256,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 플레임 고스트	22257,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 어시더스	22258,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 모로크의 현신	22259,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 살라만다	22260,1,3600000,5000,0	// fallback:ko
-bl_depth2,0,0,0,0	boss_monster	심연의 모스킬로	22261,1,3600000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 두네이르	22252,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 나가	22253,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 에인션트 트리	22254,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 돌로카리스	22255,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 냉동 가고일	22256,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 플레임 고스트	22257,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 어시더스	22258,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 모로크의 현신	22259,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 살라만다	22260,30,5000,5000,0	// fallback:ko
+bl_depth2,0,0,0,0	boss_monster	심연의 모스킬로	22261,30,5000,5000,0	// fallback:ko
 
 //==================================================
 // bl_grass - 生物圈標本環境-草原
@@ -641,7 +642,7 @@ c_tower2_,0,0,0,0	monster	大古鐘	2916,55,5000,0,0
 c_tower2_,0,0,0,0	monster	時間守護者	2918,1,60000,0,0
 c_tower2_,0,0,0,0	monster	變種朽魔	2919,55,5000,0,0
 c_tower2_,0,0,0,0	monster	長者魔導士	2920,2,60000,0,0
-c_tower2_,0,0,0,0	boss_monster	鶚梟子爵	2921,1,3600000,5000,0
+c_tower2_,0,0,0,0	boss_monster	鶚梟子爵	2921,1,60000,5000,0
 
 //==================================================
 // c_tower3 - 艾爾帕蘭鐘塔地上3樓
@@ -659,8 +660,8 @@ c_tower3_,0,0,0,0	monster	受詛咒的書	2478,8,5000,0,0
 c_tower3_,0,0,0,0	monster	受詛咒的箱子	2479,9,5000,0,0
 c_tower3_,0,0,0,0	monster	大鐘怪	2917,109,5000,0,0
 c_tower3_,0,0,0,0	monster	時間守護者	2918,2,60000,0,0
-c_tower3_,0,0,0,0	boss_monster	鶚梟子爵	2921,1,3600000,5000,0
-c_tower3_,0,0,0,0	boss_monster	鶚梟假面	2923,1,3600000,5000,0
+c_tower3_,0,0,0,0	boss_monster	鶚梟子爵	2921,3,5000,5000,0
+c_tower3_,0,0,0,0	boss_monster	鶚梟假面	2923,3,5000,5000,0
 c_tower3_,0,0,0,0	boss_monster	時間管理人	3074,1,3600000,5000,0
 
 //==================================================
@@ -672,7 +673,7 @@ c_tower4,0,0,0,0	monster	鐘怪	1193,30,5000,0,0
 c_tower4,0,0,0,0	monster	飛行魔書	1195,15,5000,0,0
 c_tower4,0,0,0,0	monster	古鐘魔	1269,35,5000,0,0
 c_tower4,0,0,0,0	monster	鐘塔守護者	1270,3,5000,0,0
-c_tower4,0,0,0,0	boss_monster	鴞裊首領	1320,1,3600000,5000,0
+c_tower4,0,0,0,0	boss_monster	鴞裊首領	1320,30,5000,5000,0
 c_tower4,0,0,0,0	monster	邪靈魔導士	1377,2,5000,0,0
 c_tower4,0,0,0,0	monster	菁英古鐘魔	2870,2,180000,0,0
 
@@ -826,7 +827,7 @@ cmd_fild02,0,0,0,0	monster	迅捷海豹寶寶	2829,3,180000,0,0
 cmd_fild03,0,0,0,0	monster	光芒草	1083,1,5000,0,0
 cmd_fild03,0,0,0,0	boss_monster	蛙王	1089,1,3600000,5000,0
 cmd_fild03,0,0,0,0	monster	噬人花	1118,64,5000,0,0
-cmd_fild03,0,0,0,0	boss_monster	半龍人	1262,1,3600000,5000,0
+cmd_fild03,0,0,0,0	boss_monster	半龍人	1262,5,5000,5000,0
 cmd_fild03,0,0,0,0	monster	鱷魚人	1271,194,5000,0,0
 cmd_fild03,0,0,0,0	monster	雄壯鱷魚人	2907,3,180000,0,0
 
@@ -942,10 +943,10 @@ dic_dun02,0,0,0,0	monster	狡猾鹿角甲蟲	2896,2,180000,0,0
 //==================================================
 // dic_dun03 - 斯卡勒伯熔岩
 //==================================================
-dic_dun03,0,0,0,0	boss_monster	夢魘獨角甲蟲 (Instance)	2161,1,3600000,5000,0
-dic_dun03,0,0,0,0	boss_monster	夢魘雙角甲蟲 (Instance)	2162,1,3600000,5000,0
-dic_dun03,0,0,0,0	boss_monster	夢魘鹿角甲蟲 (Instance)	2163,1,3600000,5000,0
-dic_dun03,0,0,0,0	boss_monster	夢魘尖角甲蟲 (Instance)	2164,1,3600000,5000,0
+dic_dun03,0,0,0,0	boss_monster	夢魘獨角甲蟲 (Instance)	2161,30,5000,5000,0
+dic_dun03,0,0,0,0	boss_monster	夢魘雙角甲蟲 (Instance)	2162,30,5000,5000,0
+dic_dun03,0,0,0,0	boss_monster	夢魘鹿角甲蟲 (Instance)	2163,40,5000,5000,0
+dic_dun03,0,0,0,0	boss_monster	夢魘尖角甲蟲 (Instance)	2164,40,5000,5000,0
 dic_dun03,0,0,0,0	boss_monster	夢魘女王甲蟲 (Instance)	2165,1,3600000,5000,0
 dic_dun03,0,0,0,0	monster	夢魘獨角甲蟲卵 (Instance)	2166,10,5000,0,0
 dic_dun03,0,0,0,0	monster	夢魘雙角甲蟲卵 (Instance)	2167,10,5000,0,0
@@ -1138,57 +1139,57 @@ ein_fild09,0,0,0,0	monster	雄壯三葉鐵甲蟲	2700,2,180000,0,0
 // for_dun01 - 時間庭園-被遺忘的時間第1區
 //==================================================
 for_dun01,0,0,0,0	monster	푸른 대지의 작은 정령	22192,12,5000,0,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 대지의 정령	22193,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 대지의 거대 정령	22194,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 대지의 변이 정령	22195,1,3600000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 대지의 정령	22193,16,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 대지의 거대 정령	22194,18,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 대지의 변이 정령	22195,4,5000,5000,0	// fallback:ko
 for_dun01,0,0,0,0	monster	푸른 화염의 작은 정령	22196,12,5000,0,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 화염의 정령	22197,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 화염의 거대 정령	22198,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	푸른 화염의 변이 정령	22199,1,3600000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 화염의 정령	22197,16,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 화염의 거대 정령	22198,18,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	푸른 화염의 변이 정령	22199,4,5000,5000,0	// fallback:ko
 for_dun01,0,0,0,0	monster	거센 바람의 작은 정령	22200,12,5000,0,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	거센 바람의 정령	22201,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	거센 바람의 거대 정령	22202,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	거센 바람의 변이 정령	22203,1,3600000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	거센 바람의 정령	22201,16,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	거센 바람의 거대 정령	22202,18,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	거센 바람의 변이 정령	22203,4,5000,5000,0	// fallback:ko
 for_dun01,0,0,0,0	monster	차가운 물의 작은 정령	22204,12,5000,0,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	차가운 물의 정령	22205,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	차가운 물의 거대 정령	22206,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	차가운 물의 변이 정령	22207,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 대지의 작은 정령	22208,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 대지의 정령	22209,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 대지의 거대 정령	22210,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 대지의 변이 정령	22211,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 화염의 작은 정령	22212,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 화염의 정령	22213,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 화염의 거대 정령	22214,1,3600000,5000,0	// fallback:ko
-for_dun01,0,0,0,0	boss_monster	오염된 화염의 변이 정령	22215,1,3600000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	차가운 물의 정령	22205,16,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	차가운 물의 거대 정령	22206,18,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	차가운 물의 변이 정령	22207,4,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 대지의 작은 정령	22208,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 대지의 정령	22209,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 대지의 거대 정령	22210,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 대지의 변이 정령	22211,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 화염의 작은 정령	22212,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 화염의 정령	22213,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 화염의 거대 정령	22214,6,5000,5000,0	// fallback:ko
+for_dun01,0,0,0,0	boss_monster	오염된 화염의 변이 정령	22215,6,5000,5000,0	// fallback:ko
 
 //==================================================
 // for_dun02 - 時間庭園-被遺忘的時間第2區
 //==================================================
 for_dun02,0,0,0,0	monster	뜨거운 물의 작은 정령	22216,24,5000,0,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	뜨거운 물의 정령	22217,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	뜨거운 물의 거대 정령	22218,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	뜨거운 물의 변이 정령	22219,1,3600000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	뜨거운 물의 정령	22217,28,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	뜨거운 물의 거대 정령	22218,32,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	뜨거운 물의 변이 정령	22219,7,5000,5000,0	// fallback:ko
 for_dun02,0,0,0,0	monster	메마른 바람의 작은 정령	22220,24,5000,0,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	메마른 바람의 정령	22221,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	메마른 바람의 거대 정령	22222,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	메마른 바람의 변이 정령	22223,1,3600000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	메마른 바람의 정령	22221,28,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	메마른 바람의 거대 정령	22222,32,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	메마른 바람의 변이 정령	22223,7,5000,5000,0	// fallback:ko
 for_dun02,0,0,0,0	monster	붉은 화염의 작은 정령	22224,24,5000,0,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	붉은 화염의 정령	22225,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	붉은 화염의 거대 정령	22226,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	붉은 화염의 변이 정령	22227,1,3600000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	붉은 화염의 정령	22225,28,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	붉은 화염의 거대 정령	22226,32,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	붉은 화염의 변이 정령	22227,7,5000,5000,0	// fallback:ko
 for_dun02,0,0,0,0	monster	굳건한 대지의 작은 정령	22228,24,5000,0,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	굳건한 대지의 정령	22229,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	굳건한 대지의 거대 정령	22230,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	굳건한 대지의 변이 정령	22231,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 물의 작은 정령	22232,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 물의 정령	22233,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 물의 거대 정령	22234,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 물의 변이 정령	22235,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 바람의 작은 정령	22236,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 바람의 정령	22237,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 바람의 거대 정령	22238,1,3600000,5000,0	// fallback:ko
-for_dun02,0,0,0,0	boss_monster	오염된 바람의 변이 정령	22239,1,3600000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	굳건한 대지의 정령	22229,28,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	굳건한 대지의 거대 정령	22230,32,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	굳건한 대지의 변이 정령	22231,7,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 물의 작은 정령	22232,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 물의 정령	22233,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 물의 거대 정령	22234,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 물의 변이 정령	22235,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 바람의 작은 정령	22236,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 바람의 정령	22237,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 바람의 거대 정령	22238,12,5000,5000,0	// fallback:ko
+for_dun02,0,0,0,0	boss_monster	오염된 바람의 변이 정령	22239,12,5000,5000,0	// fallback:ko
 
 //==================================================
 // gef_d01_i - 第250頁
@@ -1250,7 +1251,7 @@ gef_dun03,0,0,0,0	monster	白草	1082,18,5000,0,0
 gef_dun03,0,0,0,0	monster	光芒草	1083,5,5000,0,0
 gef_dun03,0,0,0,0	monster	惡靈	1192,14,5000,0,0
 gef_dun03,0,0,0,0	monster	風魔巫師	1263,5,5000,0,0
-gef_dun03,0,0,0,0	boss_monster	暗黑祭司 (Slave)	1626,1,3600000,5000,0
+gef_dun03,0,0,0,0	boss_monster	暗黑祭司 (Slave)	1626,1,600000,5000,0
 gef_dun03,0,0,0,0	monster	雄壯風魔巫師	2614,1,180000,0,0
 
 //==================================================
@@ -1379,9 +1380,9 @@ gef_fild11,0,0,0,0	monster	迅捷刺刀哥布靈	2814,3,180000,0,0
 //==================================================
 // gefenia01 - 葛帔尼亞
 //==================================================
-gefenia01,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
-gefenia01,0,0,0,0	boss_monster	獸牙怪	1204,1,3600000,5000,0
-gefenia01,0,0,0,0	boss_monster	行刑者	1205,1,3600000,5000,0
+gefenia01,0,0,0,0	boss_monster	弒神者	1203,1,10800000,5000,0
+gefenia01,0,0,0,0	boss_monster	獸牙怪	1204,1,18000000,5000,0
+gefenia01,0,0,0,0	boss_monster	行刑者	1205,1,18000000,5000,0
 gefenia01,0,0,0,0	monster	深淵騎士	1219,10,5000,0,0
 gefenia01,0,0,0,0	monster	血腥騎士	1268,1,3600000,0,0
 gefenia01,0,0,0,0	monster	狂暴小惡魔	1292,21,5000,0,0
@@ -1394,9 +1395,9 @@ gefenia01,0,0,0,0	monster	迅捷偽天使	2834,2,180000,0,0
 //==================================================
 // gefenia02 - 葛帔尼亞
 //==================================================
-gefenia02,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
-gefenia02,0,0,0,0	boss_monster	獸牙怪	1204,1,3600000,5000,0
-gefenia02,0,0,0,0	boss_monster	行刑者	1205,1,3600000,5000,0
+gefenia02,0,0,0,0	boss_monster	弒神者	1203,1,18000000,5000,0
+gefenia02,0,0,0,0	boss_monster	獸牙怪	1204,1,10800000,5000,0
+gefenia02,0,0,0,0	boss_monster	行刑者	1205,1,18000000,5000,0
 gefenia02,0,0,0,0	monster	深淵騎士	1219,10,5000,0,0
 gefenia02,0,0,0,0	monster	血腥騎士	1268,1,3600000,0,0
 gefenia02,0,0,0,0	monster	狂暴小惡魔	1292,30,5000,0,0
@@ -1409,9 +1410,9 @@ gefenia02,0,0,0,0	monster	雄壯薇歐莉	2623,2,180000,0,0
 //==================================================
 // gefenia03 - 葛帔尼亞
 //==================================================
-gefenia03,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
-gefenia03,0,0,0,0	boss_monster	獸牙怪	1204,1,3600000,5000,0
-gefenia03,0,0,0,0	boss_monster	行刑者	1205,1,3600000,5000,0
+gefenia03,0,0,0,0	boss_monster	弒神者	1203,1,18000000,5000,0
+gefenia03,0,0,0,0	boss_monster	獸牙怪	1204,1,18000000,5000,0
+gefenia03,0,0,0,0	boss_monster	行刑者	1205,1,10800000,5000,0
 gefenia03,0,0,0,0	monster	深淵騎士	1219,10,5000,0,0
 gefenia03,0,0,0,0	monster	血腥騎士	1268,1,3600000,0,0
 gefenia03,0,0,0,0	monster	狂暴小惡魔	1292,31,5000,0,0
@@ -1424,9 +1425,9 @@ gefenia03,0,0,0,0	monster	迅捷薇歐莉	2622,2,180000,0,0
 //==================================================
 // gefenia04 - 葛帔尼亞
 //==================================================
-gefenia04,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
-gefenia04,0,0,0,0	boss_monster	獸牙怪	1204,1,3600000,5000,0
-gefenia04,0,0,0,0	boss_monster	行刑者	1205,1,3600000,5000,0
+gefenia04,0,0,0,0	boss_monster	弒神者	1203,1,18000000,5000,0
+gefenia04,0,0,0,0	boss_monster	獸牙怪	1204,1,18000000,5000,0
+gefenia04,0,0,0,0	boss_monster	行刑者	1205,1,18000000,5000,0
 gefenia04,0,0,0,0	monster	深淵騎士	1219,10,5000,0,0
 gefenia04,0,0,0,0	monster	血腥騎士	1268,1,3600000,0,0
 gefenia04,0,0,0,0	monster	狂暴小惡魔	1292,20,5000,0,0
@@ -1445,8 +1446,8 @@ gl_cas01,0,0,0,0	monster	鏡妖	1260,35,5000,0,0
 gl_cas01,0,0,0,0	monster	卡拉特小丑	1267,89,5000,0,0
 gl_cas01,0,0,0,0	monster	愛麗絲女僕	1275,1,5000,0,0
 gl_cas01,0,0,0,0	monster	賢者蟲	1281,17,5000,0,0
-gl_cas01,0,0,0,0	boss_monster	鴞裊男爵	1295,1,3600000,5000,0
-gl_cas01,0,0,0,0	boss_monster	鴞裊首領	1320,1,3600000,5000,0
+gl_cas01,0,0,0,0	boss_monster	鴞裊男爵	1295,10,5000,5000,0
+gl_cas01,0,0,0,0	boss_monster	鴞裊首領	1320,35,5000,5000,0
 gl_cas01,0,0,0,0	monster	狡猾卡拉特小丑	2877,2,180000,0,0
 
 //==================================================
@@ -1472,20 +1473,20 @@ gl_cas02,0,0,0,0	monster	幽靈劍士	1163,36,5000,0,0
 gl_cas02,0,0,0,0	monster	白幽靈	1185,1,1800000,0,0
 gl_cas02,0,0,0,0	monster	邪惡箱	1191,2,5000,0,0
 gl_cas02,0,0,0,0	monster	飛行魔書	1195,29,5000,0,0
-gl_cas02,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
-gl_cas02,0,0,0,0	boss_monster	獸牙怪	1204,1,3600000,5000,0
+gl_cas02,0,0,0,0	boss_monster	弒神者	1203,1,7200000,5000,0
+gl_cas02,0,0,0,0	boss_monster	獸牙怪	1204,1,7200000,5000,0
 gl_cas02,0,0,0,0	monster	邪骸浪人	1208,41,5000,0,0
 gl_cas02,0,0,0,0	monster	深淵騎士	1219,7,5000,0,0
 gl_cas02,0,0,0,0	monster	愛麗絲女僕	1275,1,5000,0,0
 gl_cas02,0,0,0,0	monster	幽靈弓箭手	1276,20,5000,0,0
-gl_cas02,0,0,0,0	boss_monster	凱美拉	1283,1,3600000,5000,0
+gl_cas02,0,0,0,0	boss_monster	凱美拉	1283,3,5000,5000,0
 gl_cas02,0,0,0,0	monster	憤怒邪骸浪人	2620,2,180000,0,0
 
 //==================================================
 // gl_cas02_ - 幻象迴廊2F
 //==================================================
 gl_cas02_,0,0,0,0	monster	白幽靈	1185,1,1800000,0,0
-gl_cas02_,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
+gl_cas02_,0,0,0,0	boss_monster	弒神者	1203,1,7200000,5000,0
 gl_cas02_,0,0,0,0	monster	愛麗絲女僕	1275,1,5000,0,0
 gl_cas02_,0,0,0,0	monster	彷徨的人	2477,64,360000,0,0
 gl_cas02_,0,0,0,0	monster	受詛咒的書	2478,29,360000,0,0
@@ -1567,7 +1568,7 @@ gl_knt01,0,0,0,0	monster	雄壯幽靈劍士	2691,2,180000,0,0
 //==================================================
 gl_knt02,0,0,0,0	monster	卡利斯格	1132,50,5000,0,0
 gl_knt02,0,0,0,0	monster	幽靈劍士	1163,101,5000,0,0
-gl_knt02,0,0,0,0	boss_monster	弒神者	1203,1,3600000,5000,0
+gl_knt02,0,0,0,0	boss_monster	弒神者	1203,1,1800000,5000,0
 gl_knt02,0,0,0,0	monster	深淵騎士	1219,7,5000,0,0
 gl_knt02,0,0,0,0	monster	血腥騎士	1268,1,3600000,0,0
 gl_knt02,0,0,0,0	monster	愛麗絲女僕	1275,1,5000,0,0
@@ -1646,24 +1647,24 @@ glast_01,0,0,0,0	monster	菁英蝙蝠弓箭手	2826,1,180000,0,0
 //==================================================
 // gld2_ald - 深淵迴廊 : 英雄之淚
 //==================================================
-gld2_ald,0,0,0,0	boss_monster	狂暴蟻后	1289,1,3600000,5000,0
+gld2_ald,0,0,0,0	boss_monster	狂暴蟻后	1289,3,1200000,5000,0
 gld2_ald,0,0,0,0	monster	狂暴螳螂	1294,64,5000,0,0
 gld2_ald,0,0,0,0	monster	安格拉螳螂	2133,74,5000,0,0
 gld2_ald,0,0,0,0	boss_monster	喬伊亞	2251,1,3600000,5000,0
-gld2_ald,0,0,0,0	boss_monster	埃維亞	2252,1,3600000,5000,0
-gld2_ald,0,0,0,0	boss_monster	瘋狂寶箱	2288,1,3600000,5000,0
+gld2_ald,0,0,0,0	boss_monster	埃維亞	2252,1,1800000,5000,0
+gld2_ald,0,0,0,0	boss_monster	瘋狂寶箱	2288,5,5000,5000,0
 gld2_ald,0,0,0,0	monster	狡猾安格拉螳螂	2900,2,180000,0,0
 
 //==================================================
 // gld2_gef - 深淵迴廊 : 亡者之丘
 //==================================================
-gld2_gef,0,0,0,0	boss_monster	迷幻之王	1302,1,3600000,5000,0
+gld2_gef,0,0,0,0	boss_monster	迷幻之王	1302,1,1200000,5000,0
 gld2_gef,0,0,0,0	boss_monster	亡靈的守護者卡德斯	2255,1,3600000,5000,0
-gld2_gef,0,0,0,0	boss_monster	魯盜	2256,1,3600000,5000,0
+gld2_gef,0,0,0,0	boss_monster	魯盜	2256,1,1800000,5000,0
 gld2_gef,0,0,0,0	monster	深淵魔影	2281,80,5000,0,0
 gld2_gef,0,0,0,0	monster	深淵魔鏡	2282,20,5000,0,0
 gld2_gef,0,0,0,0	monster	深淵神父	2283,20,5000,0,0
-gld2_gef,0,0,0,0	boss_monster	瘋狂寶箱	2288,1,3600000,5000,0
+gld2_gef,0,0,0,0	boss_monster	瘋狂寶箱	2288,5,5000,5000,0
 gld2_gef,0,0,0,0	monster	迅捷深淵魔影	2819,2,180000,0,0
 
 //==================================================
@@ -1673,20 +1674,20 @@ gld2_pay,0,0,0,0	monster	邪骸戰士長	1290,77,5000,0,0
 gld2_pay,0,0,0,0	monster	狂暴小土人	1301,32,5000,0,0
 gld2_pay,0,0,0,0	monster	狂暴鬼火	1309,38,5000,0,0
 gld2_pay,0,0,0,0	boss_monster	將軍大賢	2253,1,3600000,5000,0
-gld2_pay,0,0,0,0	boss_monster	衛士小賢	2254,1,3600000,5000,0
-gld2_pay,0,0,0,0	boss_monster	瘋狂寶箱	2288,1,3600000,5000,0
+gld2_pay,0,0,0,0	boss_monster	衛士小賢	2254,1,1800000,5000,0
+gld2_pay,0,0,0,0	boss_monster	瘋狂寶箱	2288,6,5000,5000,0
 gld2_pay,0,0,0,0	monster	菁英邪骸戰士長	2658,2,180000,0,0
 
 //==================================================
 // gld2_prt - 深淵迴廊 : 戰士之路
 //==================================================
 gld2_prt,0,0,0,0	boss_monster	憤怒的淘汰者傅立葉	2249,1,3600000,5000,0
-gld2_prt,0,0,0,0	boss_monster	女戰士蘿拉	2250,1,3600000,5000,0
+gld2_prt,0,0,0,0	boss_monster	女戰士蘿拉	2250,1,1800000,5000,0
 gld2_prt,0,0,0,0	monster	深淵犬妖	2284,32,5000,0,0
 gld2_prt,0,0,0,0	monster	深淵犬妖	2285,45,5000,0,0
 gld2_prt,0,0,0,0	monster	深淵犬妖	2286,45,5000,0,0
 gld2_prt,0,0,0,0	monster	深淵犬妖弓箭手	2287,45,5000,0,0
-gld2_prt,0,0,0,0	boss_monster	瘋狂寶箱	2288,1,3600000,5000,0
+gld2_prt,0,0,0,0	boss_monster	瘋狂寶箱	2288,6,5000,5000,0
 gld2_prt,0,0,0,0	monster	憤怒深淵犬妖	2817,2,180000,0,0
 
 //==================================================
@@ -1694,7 +1695,7 @@ gld2_prt,0,0,0,0	monster	憤怒深淵犬妖	2817,2,180000,0,0
 //==================================================
 gld_dun01,0,0,0,0	boss_monster	月夜貓	1150,1,3600000,5000,0
 gld_dun01,0,0,0,0	monster	狂暴大腳熊	1306,68,5000,0,0
-gld_dun01,0,0,0,0	boss_monster	狂暴月夜貓	1307,1,3600000,5000,0
+gld_dun01,0,0,0,0	boss_monster	狂暴月夜貓	1307,3,1200000,5000,0
 gld_dun01,0,0,0,0	monster	狂暴野豬	1311,37,5000,0,0
 gld_dun01,0,0,0,0	monster	雄壯狂暴大腳熊	2780,1,180000,0,0
 
@@ -1720,7 +1721,7 @@ gld_dun02,0,0,0,0	monster	菁英狂暴蜂兵	2821,1,180000,0,0
 // gld_dun02_2 - 露依納密穴2樓
 //==================================================
 gld_dun02_2,0,0,0,0	boss_monster	蟻后	1147,1,3600000,5000,0
-gld_dun02_2,0,0,0,0	boss_monster	狂暴蟻后	1289,1,3600000,5000,0
+gld_dun02_2,0,0,0,0	boss_monster	狂暴蟻后	1289,3,1200000,5000,0
 gld_dun02_2,0,0,0,0	monster	狂暴螳螂	1294,30,5000,0,0
 gld_dun02_2,0,0,0,0	monster	安格拉螳螂	2133,40,5000,0,0
 gld_dun02_2,0,0,0,0	monster	迅捷安格拉螳螂	2901,1,180000,0,0
@@ -1748,7 +1749,7 @@ gld_dun03_2,0,0,0,0	monster	狡猾深淵犬妖	2818,1,180000,0,0
 // gld_dun04 - 怖立特離亞公會地下密穴1樓
 //==================================================
 gld_dun04,0,0,0,0	boss_monster	死靈	1046,1,3600000,5000,0
-gld_dun04,0,0,0,0	boss_monster	幽靈波利	1120,1,3600000,5000,0
+gld_dun04,0,0,0,0	boss_monster	幽靈波利	1120,1,14400000,5000,0
 gld_dun04,0,0,0,0	monster	狂暴惡靈	1291,28,5000,0,0
 gld_dun04,0,0,0,0	monster	狂暴小惡魔	1292,11,5000,0,0
 gld_dun04,0,0,0,0	monster	腐屍首領	1298,63,5000,0,0
@@ -1758,7 +1759,7 @@ gld_dun04,0,0,0,0	monster	菁英腐屍首領	2605,1,180000,0,0
 // gld_dun04_2 - 怖立特離亞密穴2樓
 //==================================================
 gld_dun04_2,0,0,0,0	boss_monster	黑暗之王	1272,1,3600000,5000,0
-gld_dun04_2,0,0,0,0	boss_monster	迷幻之王	1302,1,3600000,5000,0
+gld_dun04_2,0,0,0,0	boss_monster	迷幻之王	1302,1,1200000,5000,0
 gld_dun04_2,0,0,0,0	monster	深淵魔影	2281,51,5000,0,0
 gld_dun04_2,0,0,0,0	monster	深淵魔鏡	2282,17,5000,0,0
 gld_dun04_2,0,0,0,0	monster	深淵神父	2283,17,5000,0,0
@@ -1886,29 +1887,29 @@ hero_dun1,0,0,0,0	boss_monster	Garden Floral Pegasus	21904,1,3600000,5000,0	// f
 //==================================================
 // hero_tra - 聖域希羅斯里亞修練場
 //==================================================
-hero_tra,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,3600000,5000,0
-hero_tra,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,3600000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,5000,5000,0
+hero_tra,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,5000,5000,0
 
 //==================================================
 // hu_fild01 - 達納托斯塔台前
@@ -1922,7 +1923,7 @@ hu_fild01,0,0,0,0	monster	菁英諾博斯	2731,2,180000,0,0
 //==================================================
 // hu_fild02 - 毀葛原野
 //==================================================
-hu_fild02,0,0,0,0	boss_monster	獅鷲獸	1259,1,3600000,5000,0
+hu_fild02,0,0,0,0	boss_monster	獅鷲獸	1259,3,3600000,5000,0
 hu_fild02,0,0,0,0	monster	邪惡向日葵	1368,37,5000,0,0
 hu_fild02,0,0,0,0	monster	諾博斯	1715,126,5000,0,0
 hu_fild02,0,0,0,0	monster	黃諾博斯	1718,37,5000,0,0
@@ -2125,7 +2126,7 @@ iz_dun04,0,0,0,0	monster	憤怒人魚士兵	2757,2,180000,0,0
 //==================================================
 // iz_dun05 - 依斯魯得島 海盜地洞密穴6樓
 //==================================================
-iz_dun05,0,0,0,0	boss_monster	大腳龍蝦	2198,1,3600000,5000,0
+iz_dun05,0,0,0,0	boss_monster	大腳龍蝦	2198,25,5000,5000,0
 iz_dun05,0,0,0,0	monster	深海電鰻	2201,50,5000,0,0
 iz_dun05,0,0,0,0	boss_monster	魔鬼大烏賊	2202,1,3600000,5000,0
 iz_dun05,0,0,0,0	monster	醬缸章魚	2203,30,5000,0,0
@@ -2489,7 +2490,7 @@ lhz_dun01,0,0,0,0	monster	闇●商人	1654,8,5000,0,0
 lhz_dun01,0,0,0,0	monster	闇●服事	1655,13,5000,0,0
 lhz_dun01,0,0,0,0	monster	闇●弓箭手	1656,13,5000,0,0
 lhz_dun01,0,0,0,0	monster	闇●魔法師	1657,11,5000,0,0
-lhz_dun01,0,0,0,0	boss_monster	雙子星-S58	1681,1,3600000,5000,0
+lhz_dun01,0,0,0,0	boss_monster	雙子星-S58	1681,1,5000,5000,0
 lhz_dun01,0,0,0,0	monster	消防魔	1682,101,5000,0,0
 lhz_dun01,0,0,0,0	monster	菁英消防魔	2688,3,180000,0,0
 
@@ -2504,7 +2505,7 @@ lhz_dun02,0,0,0,0	monster	闇●服事	1655,50,5000,0,0
 lhz_dun02,0,0,0,0	monster	闇●弓箭手	1656,50,5000,0,0
 lhz_dun02,0,0,0,0	monster	闇●魔法師	1657,50,5000,0,0
 lhz_dun02,0,0,0,0	boss_monster	闇●劍士 賽尼亞	1658,1,3600000,5000,0
-lhz_dun02,0,0,0,0	boss_monster	雙子星-S58	1681,1,3600000,5000,0
+lhz_dun02,0,0,0,0	boss_monster	雙子星-S58	1681,10,5000,5000,0
 lhz_dun02,0,0,0,0	monster	消防魔	1682,20,5000,0,0
 lhz_dun02,0,0,0,0	monster	菁英闇●魔法師	2692,3,180000,0,0
 
@@ -2517,12 +2518,12 @@ lhz_dun03,0,0,0,0	monster	闇●神工匠	1636,42,5000,0,0
 lhz_dun03,0,0,0,0	monster	闇●神官	1637,42,5000,0,0
 lhz_dun03,0,0,0,0	monster	闇●神射手	1638,81,5000,0,0
 lhz_dun03,0,0,0,0	monster	闇●超魔導師	1639,57,5000,0,0
-lhz_dun03,0,0,0,0	boss_monster	騎士領主 賽依連 (Slave)	1640,1,3600000,5000,0
-lhz_dun03,0,0,0,0	boss_monster	十字刺客 艾勒梅斯 (Slave)	1641,1,3600000,5000,0
-lhz_dun03,0,0,0,0	boss_monster	神工匠 哈沃德 (Slave)	1642,1,3600000,5000,0
-lhz_dun03,0,0,0,0	boss_monster	神官 瑪嘉雷特 (Slave)	1643,1,3600000,5000,0
-lhz_dun03,0,0,0,0	boss_monster	神射手 迪文 (Slave)	1644,1,3600000,5000,0
-lhz_dun03,0,0,0,0	boss_monster	超魔導師 凱特莉娜 (Slave)	1645,1,3600000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	騎士領主 賽依連 (Slave)	1640,1,2700000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	十字刺客 艾勒梅斯 (Slave)	1641,1,2580000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	神工匠 哈沃德 (Slave)	1642,1,3000000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	神官 瑪嘉雷特 (Slave)	1643,1,3300000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	神射手 迪文 (Slave)	1644,1,2700000,5000,0
+lhz_dun03,0,0,0,0	boss_monster	超魔導師 凱特莉娜 (Slave)	1645,1,2580000,5000,0
 lhz_dun03,0,0,0,0	monster	雄壯闇●神射手	2667,3,180000,0,0
 
 //==================================================
@@ -2535,31 +2536,31 @@ lhz_dun04,0,0,0,0	monster	闇●武術宗師	2224,42,5000,0,0
 lhz_dun04,0,0,0,0	monster	闇●神行太保	2225,57,5000,0,0
 lhz_dun04,0,0,0,0	monster	闇●搞笑藝人	2226,42,5000,0,0
 lhz_dun04,0,0,0,0	monster	闇●冷豔舞姬	2227,42,5000,0,0
-lhz_dun04,0,0,0,0	boss_monster	聖殿十字軍 蘭德爾 (Slave)	2228,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	創造者 弗拉梅爾 (Slave)	2229,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	智者 希莉亞 (Slave)	2230,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	武術宗師 陳 (Slave)	2231,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	神行太保 格蒂 (Slave)	2232,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	搞笑藝人 阿弗克希奧 (Slave)	2233,1,3600000,5000,0
-lhz_dun04,0,0,0,0	boss_monster	冷豔舞姬 特提妮 (Slave)	2234,1,3600000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	聖殿十字軍 蘭德爾 (Slave)	2228,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	創造者 弗拉梅爾 (Slave)	2229,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	智者 希莉亞 (Slave)	2230,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	武術宗師 陳 (Slave)	2231,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	神行太保 格蒂 (Slave)	2232,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	搞笑藝人 阿弗克希奧 (Slave)	2233,1,3300000,5000,0
+lhz_dun04,0,0,0,0	boss_monster	冷豔舞姬 特提妮 (Slave)	2234,1,3300000,5000,0
 lhz_dun04,0,0,0,0	monster	菁英闇●智者	2875,3,180000,0,0
 
 //==================================================
 // lhz_dun_n - 戰死者之墓
 //==================================================
-lhz_dun_n,0,0,0,0	boss_monster	闇●十字斬首者	3208,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●大主教	3209,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●咒術士	3210,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●遊俠	3211,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●機械工匠	3212,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●盧恩騎士	3213,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●皇家禁衛隊	3226,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●基因學者	3227,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●妖術師	3228,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●修羅	3229,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●魅影追蹤者	3230,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●宮廷樂師	3231,1,3600000,5000,0
-lhz_dun_n,0,0,0,0	boss_monster	闇●浪姬舞者	3232,1,3600000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●十字斬首者	3208,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●大主教	3209,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●咒術士	3210,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●遊俠	3211,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●機械工匠	3212,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●盧恩騎士	3213,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●皇家禁衛隊	3226,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●基因學者	3227,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●妖術師	3228,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●修羅	3229,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●魅影追蹤者	3230,6,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●宮廷樂師	3231,3,10000,5000,0
+lhz_dun_n,0,0,0,0	boss_monster	闇●浪姬舞者	3232,3,10000,5000,0
 
 //==================================================
 // lhz_fild01 - 里希塔樂鎮原野
@@ -2708,7 +2709,7 @@ mal_dun01,0,0,0,0	monster	貝殼魔靈	1074,10,5000,0,0
 mal_dun01,0,0,0,0	monster	海星	1266,20,5000,0,0
 mal_dun01,0,0,0,0	monster	紅海星	2197,60,5000,0,0
 mal_dun01,0,0,0,0	monster	胖胖波利	2199,45,5000,0,0
-mal_dun01,0,0,0,0	boss_monster	野貓騎士	2208,1,3600000,5000,0
+mal_dun01,0,0,0,0	boss_monster	野貓騎士	2208,1,5000,5000,0
 mal_dun01,0,0,0,0	monster	狡猾紅海星	2689,2,180000,0,0
 
 //==================================================
@@ -2734,7 +2735,7 @@ man_fild02,0,0,0,0	monster	狡猾石錘巨人	2882,2,180000,0,0
 man_fild03,0,0,0,0	monster	噠噠喬	1986,33,5000,0,0
 man_fild03,0,0,0,0	monster	變異蜈蚣	1987,33,5000,0,0
 man_fild03,0,0,0,0	monster	希斯利安	1989,33,5000,0,0
-man_fild03,0,0,0,0	boss_monster	硬石猛瑪	1990,1,3600000,5000,0
+man_fild03,0,0,0,0	boss_monster	硬石猛瑪	1990,1,14400000,5000,0
 man_fild03,0,0,0,0	monster	雄壯噠噠喬	2637,1,180000,0,0
 
 //==================================================
@@ -2990,29 +2991,29 @@ moc_fild18,0,0,0,0	monster	狡猾蠍子	2670,3,180000,0,0
 //==================================================
 // moc_fild20 - 蘇克拉特沙漠次元裂縫
 //==================================================
-moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1918,1,3600000,5000,0
-moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1919,1,3600000,5000,0
-moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1920,1,3600000,5000,0
-moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1921,1,3600000,5000,0
+moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1918,1,30000,5000,0
+moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1919,1,30000,5000,0
+moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1920,1,30000,5000,0
+moc_fild20,0,0,0,0	boss_monster	夢羅克分身	1921,1,30000,5000,0
 moc_fild20,0,0,0,0	monster	迅捷夢羅克分身	2744,1,180000,0,0
 
 //==================================================
 // moc_fild21 - 蘇克拉特沙漠次元裂縫
 //==================================================
-moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1918,1,3600000,5000,0
-moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1919,1,3600000,5000,0
-moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1920,1,3600000,5000,0
-moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1921,1,3600000,5000,0
+moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1918,79,5000,5000,0
+moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1919,79,5000,5000,0
+moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1920,79,5000,5000,0
+moc_fild21,0,0,0,0	boss_monster	夢羅克分身	1921,58,5000,5000,0
 moc_fild21,0,0,0,0	monster	狡猾夢羅克分身	2743,2,5000,0,0
 
 //==================================================
 // moc_fild22 - 蘇克拉特沙漠次元裂縫
 //==================================================
 moc_fild22,0,0,0,0	boss_monster	受傷的夢羅克	1917,1,3600000,5000,0
-moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1918,1,3600000,5000,0
-moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1919,1,3600000,5000,0
-moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1920,1,3600000,5000,0
-moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1921,1,3600000,5000,0
+moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1918,73,30000,5000,0
+moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1919,73,30000,5000,0
+moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1920,73,30000,5000,0
+moc_fild22,0,0,0,0	boss_monster	夢羅克分身	1921,50,10000,5000,0
 moc_fild22,0,0,0,0	monster	憤怒夢羅克分身	2742,3,180000,0,0
 
 //==================================================
@@ -3098,10 +3099,10 @@ monk_test,0,0,0,0	monster	腐屍	1015,10,5000,0,0
 //==================================================
 // moro_vol - 火焰盆地
 //==================================================
-moro_vol,0,0,0,0	boss_monster	夢羅克分身	1918,1,3600000,5000,0
-moro_vol,0,0,0,0	boss_monster	夢羅克分身	1919,1,3600000,5000,0
-moro_vol,0,0,0,0	boss_monster	夢羅克分身	1920,1,3600000,5000,0
-moro_vol,0,0,0,0	boss_monster	夢羅克分身	1921,1,3600000,5000,0
+moro_vol,0,0,0,0	boss_monster	夢羅克分身	1918,7,5000,5000,0
+moro_vol,0,0,0,0	boss_monster	夢羅克分身	1919,7,5000,5000,0
+moro_vol,0,0,0,0	boss_monster	夢羅克分身	1920,7,5000,5000,0
+moro_vol,0,0,0,0	boss_monster	夢羅克分身	1921,7,5000,5000,0
 moro_vol,0,0,0,0	monster	火焰禿鷹	3020,43,5000,0,0
 moro_vol,0,0,0,0	monster	火焰泥人	3021,17,5000,0,0
 moro_vol,0,0,0,0	monster	火焰傘蜥	3022,30,5000,0,0
@@ -3318,8 +3319,8 @@ odin_tem02,0,0,0,0	monster	藍草	1079,13,5000,0,0
 odin_tem02,0,0,0,0	monster	黃色等離子體	1693,20,5000,0,0
 odin_tem02,0,0,0,0	monster	皮影魔	1752,40,5000,0,0
 odin_tem02,0,0,0,0	monster	彩妝皮影魔	1753,40,5000,0,0
-odin_tem02,0,0,0,0	boss_monster	褐方體惡魔	1754,1,3600000,5000,0
-odin_tem02,0,0,0,0	boss_monster	黑方體惡魔	1755,1,3600000,5000,0
+odin_tem02,0,0,0,0	boss_monster	褐方體惡魔	1754,1,5000,5000,0
+odin_tem02,0,0,0,0	boss_monster	黑方體惡魔	1755,1,5000,5000,0
 odin_tem02,0,0,0,0	monster	皮影魔 (Slave)	1761,2,5000,0,0
 odin_tem02,0,0,0,0	monster	彩妝皮影魔 (Slave)	1762,4,5000,0,0
 odin_tem02,0,0,0,0	monster	雄壯皮影魔	2657,1,180000,0,0
@@ -3333,11 +3334,11 @@ odin_tem03,0,0,0,0	monster	黃色等離子體	1693,24,5000,0,0
 odin_tem03,0,0,0,0	boss_monster	蘭特克力斯	1751,1,3600000,5000,0
 odin_tem03,0,0,0,0	monster	皮影魔	1752,4,5000,0,0
 odin_tem03,0,0,0,0	monster	彩妝皮影魔	1753,4,5000,0,0
-odin_tem03,0,0,0,0	boss_monster	褐方體惡魔	1754,1,3600000,5000,0
-odin_tem03,0,0,0,0	boss_monster	黑方體惡魔	1755,1,3600000,5000,0
+odin_tem03,0,0,0,0	boss_monster	褐方體惡魔	1754,19,5000,5000,0
+odin_tem03,0,0,0,0	boss_monster	黑方體惡魔	1755,19,5000,5000,0
 odin_tem03,0,0,0,0	monster	皮影魔 (Slave)	1761,6,5000,0,0
 odin_tem03,0,0,0,0	monster	彩妝皮影魔 (Slave)	1762,6,5000,0,0
-odin_tem03,0,0,0,0	boss_monster	巴基力 蘭特克力斯	1765,1,3600000,5000,0
+odin_tem03,0,0,0,0	boss_monster	巴基力 蘭特克力斯	1765,2,5400000,5000,0
 odin_tem03,0,0,0,0	monster	菁英黃色等離子體	2706,2,180000,0,0
 
 //==================================================
@@ -3509,7 +3510,7 @@ pay_fild04,0,0,0,0	boss_monster	天使波利	1096,1,3600000,5000,0
 pay_fild04,0,0,0,0	monster	土波利	1113,21,5000,0,0
 pay_fild04,0,0,0,0	boss_monster	幽靈波利	1120,1,3600000,5000,0
 pay_fild04,0,0,0,0	monster	冰波利	1242,32,5000,0,0
-pay_fild04,0,0,0,0	boss_monster	惡魔波利	1582,1,3600000,5000,0
+pay_fild04,0,0,0,0	boss_monster	惡魔波利	1582,1,7200000,5000,0
 pay_fild04,0,0,0,0	monster	狡猾波波利	2703,2,180000,0,0
 
 //==================================================
@@ -3595,7 +3596,7 @@ prt_fild01,0,0,0,0	monster	菁英瘋兔	2771,2,180000,0,0
 prt_fild02,0,0,0,0	monster	克瑞米	1018,40,5000,0,0
 prt_fild02,0,0,0,0	monster	波波利	1031,40,5000,0,0
 prt_fild02,0,0,0,0	monster	光芒草	1083,1,5000,0,0
-prt_fild02,0,0,0,0	boss_monster	藍瘋兔	1093,1,3600000,5000,0
+prt_fild02,0,0,0,0	boss_monster	藍瘋兔	1093,1,1800000,5000,0
 prt_fild02,0,0,0,0	monster	瓢蟲	1174,188,5000,0,0
 prt_fild02,0,0,0,0	monster	狡猾瓢蟲	2645,3,180000,0,0
 
@@ -3745,11 +3746,11 @@ prt_maze03,0,0,0,0	monster	黑蛇	1037,30,300000,0,0
 prt_maze03,0,0,0,0	boss_monster	巴風特	1039,1,3600000,5000,0
 prt_maze03,0,0,0,0	monster	紅菇	1085,5,180000,0,0
 prt_maze03,0,0,0,0	monster	蝗蟲之王	1088,1,1920000,0,0
-prt_maze03,0,0,0,0	boss_monster	波利之王	1090,1,3600000,5000,0
-prt_maze03,0,0,0,0	boss_monster	流浪之狼	1092,1,3600000,5000,0
-prt_maze03,0,0,0,0	boss_monster	藍瘋兔	1093,1,3600000,5000,0
+prt_maze03,0,0,0,0	boss_monster	波利之王	1090,1,1920000,5000,0
+prt_maze03,0,0,0,0	boss_monster	流浪之狼	1092,1,1920000,5000,0
+prt_maze03,0,0,0,0	boss_monster	藍瘋兔	1093,1,1920000,5000,0
 prt_maze03,0,0,0,0	monster	小巴風特	1101,25,5000,0,0
-prt_maze03,0,0,0,0	boss_monster	幽靈波利	1120,1,3600000,5000,0
+prt_maze03,0,0,0,0	boss_monster	幽靈波利	1120,1,6800000,5000,0
 prt_maze03,0,0,0,0	monster	螳螂	1139,30,60000,0,0
 prt_maze03,0,0,0,0	monster	灰森靈	1215,20,300000,0,0
 prt_maze03,0,0,0,0	monster	菁英波波利	2701,1,180000,0,0
@@ -4026,8 +4027,8 @@ rockrdg2,0,0,0,0	monster	郊狼	3739,10,5000,0,0
 //==================================================
 schg_dun01,0,0,0,0	monster	鈷礦石魔	1976,20,5000,0,0
 schg_dun01,0,0,0,0	monster	礦石波利	1977,20,5000,0,0
-schg_dun01,0,0,0,0	monster	地獄機械戰士	1978,27,1000,0,0
-schg_dun01,0,0,0,0	monster	扎庫坦	1979,27,1000,0,0
+schg_dun01,0,0,0,0	monster	地獄機械戰士	1978,27,5000,0,0
+schg_dun01,0,0,0,0	monster	扎庫坦	1979,27,5000,0,0
 schg_dun01,0,0,0,0	monster	狡猾扎庫坦	2607,1,180000,0,0
 
 //==================================================
@@ -4098,7 +4099,7 @@ spl_fild02,0,0,0,0	monster	菁英捕蟲堇	2711,2,180000,0,0
 //==================================================
 // spl_fild03 - 史波浪壯麗原野
 //==================================================
-spl_fild03,0,0,0,0	boss_monster	三角獸	1991,1,3600000,5000,0
+spl_fild03,0,0,0,0	boss_monster	三角獸	1991,2,5000,5000,0
 spl_fild03,0,0,0,0	monster	飛馬	1992,52,5000,0,0
 spl_fild03,0,0,0,0	monster	納迦	1993,42,5000,0,0
 spl_fild03,0,0,0,0	monster	毒黃蜂	1994,74,5000,0,0
@@ -4136,7 +4137,7 @@ tha_t01,0,0,0,0	monster	邪惡箱	1191,37,5000,0,0
 tha_t01,0,0,0,0	monster	飛行魔書	1195,37,5000,0,0
 tha_t01,0,0,0,0	monster	愛麗絲女僕	1275,9,5000,0,0
 tha_t01,0,0,0,0	monster	綠色等離子體	1695,37,5000,0,0
-tha_t01,0,0,0,0	boss_monster	慰勞者	1703,1,3600000,5000,0
+tha_t01,0,0,0,0	boss_monster	慰勞者	1703,7,5000,5000,0
 tha_t01,0,0,0,0	monster	迅捷飛行魔書	2681,1,180000,0,0
 
 //==================================================
@@ -4149,7 +4150,7 @@ tha_t02,0,0,0,0	monster	邪靈魔導士	1377,12,5000,0,0
 tha_t02,0,0,0,0	monster	藍色等離子體	1697,25,5000,0,0
 tha_t02,0,0,0,0	monster	死亡魔書	1698,12,5000,0,0
 tha_t02,0,0,0,0	monster	狂暴邪惡箱	1699,100,5000,0,0
-tha_t02,0,0,0,0	boss_monster	代行刑者	1702,1,3600000,5000,0
+tha_t02,0,0,0,0	boss_monster	代行刑者	1702,5,5000,5000,0
 tha_t02,0,0,0,0	monster	菁英狂暴邪惡箱	2903,2,180000,0,0
 
 //==================================================
@@ -4161,7 +4162,7 @@ tha_t03,0,0,0,0	monster	邪靈魔導士	1377,11,5000,0,0
 tha_t03,0,0,0,0	monster	紫色等離子體	1696,23,5000,0,0
 tha_t03,0,0,0,0	monster	死亡魔書	1698,92,5000,0,0
 tha_t03,0,0,0,0	monster	狂暴邪惡箱	1699,11,5000,0,0
-tha_t03,0,0,0,0	boss_monster	安息者	1701,1,3600000,5000,0
+tha_t03,0,0,0,0	boss_monster	安息者	1701,4,5000,5000,0
 tha_t03,0,0,0,0	monster	菁英死亡魔書	2860,2,180000,0,0
 
 //==================================================
@@ -4169,20 +4170,20 @@ tha_t03,0,0,0,0	monster	菁英死亡魔書	2860,2,180000,0,0
 //==================================================
 tha_t04,0,0,0,0	monster	邪惡箱	1191,20,5000,0,0
 tha_t04,0,0,0,0	monster	飛行魔書	1195,20,5000,0,0
-tha_t04,0,0,0,0	boss_monster	鴞裊男爵	1295,1,3600000,5000,0
-tha_t04,0,0,0,0	boss_monster	鴞裊首領	1320,1,3600000,5000,0
+tha_t04,0,0,0,0	boss_monster	鴞裊男爵	1295,10,5000,5000,0
+tha_t04,0,0,0,0	boss_monster	鴞裊首領	1320,10,5000,5000,0
 tha_t04,0,0,0,0	monster	邪靈魔導士	1377,20,5000,0,0
 tha_t04,0,0,0,0	monster	紅色等離子體	1694,20,5000,0,0
 tha_t04,0,0,0,0	monster	死亡魔書	1698,20,5000,0,0
 tha_t04,0,0,0,0	monster	狂暴邪惡箱	1699,20,5000,0,0
-tha_t04,0,0,0,0	boss_monster	監視者	1700,1,3600000,5000,0
+tha_t04,0,0,0,0	boss_monster	監視者	1700,4,5000,5000,0
 tha_t04,0,0,0,0	monster	雄壯死亡魔書	2859,2,180000,0,0
 
 //==================================================
 // tha_t05 - 達納托斯塔台上層部
 //==================================================
-tha_t05,0,0,0,0	boss_monster	鴞裊男爵	1295,1,3600000,5000,0
-tha_t05,0,0,0,0	boss_monster	鴞裊首領	1320,1,3600000,5000,0
+tha_t05,0,0,0,0	boss_monster	鴞裊男爵	1295,20,5000,5000,0
+tha_t05,0,0,0,0	boss_monster	鴞裊首領	1320,80,5000,5000,0
 tha_t05,0,0,0,0	monster	邪靈魔導士	1377,20,5000,0,0
 tha_t05,0,0,0,0	monster	紅色等離子體	1694,10,5000,0,0
 tha_t05,0,0,0,0	monster	綠色等離子體	1695,10,5000,0,0
@@ -4190,14 +4191,14 @@ tha_t05,0,0,0,0	monster	紫色等離子體	1696,10,5000,0,0
 tha_t05,0,0,0,0	monster	藍色等離子體	1697,10,5000,0,0
 tha_t05,0,0,0,0	monster	死亡魔書	1698,40,5000,0,0
 tha_t05,0,0,0,0	monster	狂暴邪惡箱	1699,40,5000,0,0
-tha_t05,0,0,0,0	boss_monster	達納托斯的苦惱	1707,1,3600000,5000,0
+tha_t05,0,0,0,0	boss_monster	達納托斯的苦惱	1707,2,5000,5000,0
 tha_t05,0,0,0,0	monster	菁英鴞裊首領	2721,3,180000,0,0
 
 //==================================================
 // tha_t06 - 達納托斯塔台上層部
 //==================================================
-tha_t06,0,0,0,0	boss_monster	鴞裊男爵	1295,1,3600000,5000,0
-tha_t06,0,0,0,0	boss_monster	鴞裊首領	1320,1,3600000,5000,0
+tha_t06,0,0,0,0	boss_monster	鴞裊男爵	1295,40,5000,5000,0
+tha_t06,0,0,0,0	boss_monster	鴞裊首領	1320,40,5000,5000,0
 tha_t06,0,0,0,0	monster	邪靈魔導士	1377,20,5000,0,0
 tha_t06,0,0,0,0	monster	紅色等離子體	1694,10,5000,0,0
 tha_t06,0,0,0,0	monster	綠色等離子體	1695,10,5000,0,0
@@ -4205,7 +4206,7 @@ tha_t06,0,0,0,0	monster	紫色等離子體	1696,10,5000,0,0
 tha_t06,0,0,0,0	monster	藍色等離子體	1697,10,5000,0,0
 tha_t06,0,0,0,0	monster	死亡魔書	1698,40,5000,0,0
 tha_t06,0,0,0,0	monster	狂暴邪惡箱	1699,40,5000,0,0
-tha_t06,0,0,0,0	boss_monster	達納托斯的悲哀	1706,1,3600000,5000,0
+tha_t06,0,0,0,0	boss_monster	達納托斯的悲哀	1706,2,5000,5000,0
 tha_t06,0,0,0,0	monster	迅捷死亡魔書	2858,3,180000,0,0
 
 //==================================================
@@ -4213,23 +4214,23 @@ tha_t06,0,0,0,0	monster	迅捷死亡魔書	2858,3,180000,0,0
 //==================================================
 tha_t07,0,0,0,0	monster	死亡魔書	1698,10,5000,0,0
 tha_t07,0,0,0,0	monster	狂暴邪惡箱	1699,10,5000,0,0
-tha_t07,0,0,0,0	boss_monster	監視者	1700,1,3600000,5000,0
-tha_t07,0,0,0,0	boss_monster	安息者	1701,1,3600000,5000,0
-tha_t07,0,0,0,0	boss_monster	代行刑者	1702,1,3600000,5000,0
-tha_t07,0,0,0,0	boss_monster	慰勞者	1703,1,3600000,5000,0
-tha_t07,0,0,0,0	boss_monster	達納托斯的絕望	1705,1,3600000,5000,0
+tha_t07,0,0,0,0	boss_monster	監視者	1700,11,5000,5000,0
+tha_t07,0,0,0,0	boss_monster	安息者	1701,11,5000,5000,0
+tha_t07,0,0,0,0	boss_monster	代行刑者	1702,15,5000,5000,0
+tha_t07,0,0,0,0	boss_monster	慰勞者	1703,11,5000,5000,0
+tha_t07,0,0,0,0	boss_monster	達納托斯的絕望	1705,2,5000,5000,0
 tha_t07,0,0,0,0	monster	迅捷代行刑者	2686,1,180000,0,0
 
 //==================================================
 // tha_t08 - 達納托斯塔台上層部天使之房
 //==================================================
 tha_t08,0,0,0,0	monster	死亡魔書	1698,10,5000,0,0
-tha_t08,0,0,0,0	boss_monster	監視者	1700,1,3600000,5000,0
-tha_t08,0,0,0,0	boss_monster	代行刑者	1702,1,3600000,5000,0
-tha_t08,0,0,0,0	boss_monster	達納托斯的憎恨	1704,1,3600000,5000,0
-tha_t08,0,0,0,0	boss_monster	達納托斯的絕望	1705,1,3600000,5000,0
-tha_t08,0,0,0,0	boss_monster	達納托斯的悲哀	1706,1,3600000,5000,0
-tha_t08,0,0,0,0	boss_monster	達納托斯的苦惱	1707,1,3600000,5000,0
+tha_t08,0,0,0,0	boss_monster	監視者	1700,5,5000,5000,0
+tha_t08,0,0,0,0	boss_monster	代行刑者	1702,20,5000,5000,0
+tha_t08,0,0,0,0	boss_monster	達納托斯的憎恨	1704,7,5000,5000,0
+tha_t08,0,0,0,0	boss_monster	達納托斯的絕望	1705,7,5000,5000,0
+tha_t08,0,0,0,0	boss_monster	達納托斯的悲哀	1706,7,5000,5000,0
+tha_t08,0,0,0,0	boss_monster	達納托斯的苦惱	1707,7,5000,5000,0
 tha_t08,0,0,0,0	monster	狡猾代行刑者	2685,1,180000,0,0
 
 //==================================================
@@ -4238,8 +4239,8 @@ tha_t08,0,0,0,0	monster	狡猾代行刑者	2685,1,180000,0,0
 tha_t09,0,0,0,0	monster	惡靈邪惡箱	20779,5,5000,0,0
 tha_t09,0,0,0,0	monster	亡靈魔書	20780,5,5000,0,0
 tha_t09,0,0,0,0	monster	千年老妖	20781,5,5000,0,0
-tha_t09,0,0,0,0	boss_monster	鴉魔首領	20782,1,3600000,5000,0
-tha_t09,0,0,0,0	boss_monster	鴉魔男爵	20783,1,3600000,5000,0
+tha_t09,0,0,0,0	boss_monster	鴉魔首領	20782,10,5000,5000,0
+tha_t09,0,0,0,0	boss_monster	鴉魔男爵	20783,15,5000,5000,0
 
 //==================================================
 // tha_t10 - 達納托斯塔台上層部悲傷之房
@@ -4255,8 +4256,8 @@ tha_t10,0,0,0,0	monster	千年老妖	20781,13,5000,0,0
 //==================================================
 tha_t11,0,0,0,0	monster	體諒墮天使	20773,14,5000,0,0
 tha_t11,0,0,0,0	monster	幸福墮天使	20774,14,5000,0,0
-tha_t11,0,0,0,0	boss_monster	達納托斯的恐懼	20776,1,3600000,5000,0
-tha_t11,0,0,0,0	boss_monster	達納托斯的怨懟	20777,1,3600000,5000,0
+tha_t11,0,0,0,0	boss_monster	達納托斯的恐懼	20776,2,5000,5000,0
+tha_t11,0,0,0,0	boss_monster	達納托斯的怨懟	20777,2,5000,5000,0
 tha_t11,0,0,0,0	monster	惡靈邪惡箱	20779,3,5000,0,0
 tha_t11,0,0,0,0	monster	亡靈魔書	20780,3,5000,0,0
 tha_t11,0,0,0,0	monster	祈願墮天使	20844,15,5000,0,0
@@ -4265,31 +4266,31 @@ tha_t11,0,0,0,0	monster	歡笑墮天使	20845,15,5000,0,0
 //==================================================
 // tha_t12 - 達納托斯塔台上層部憎恨之房
 //==================================================
-tha_t12,0,0,0,0	boss_monster	達納托斯的憤怒	20775,1,3600000,5000,0
-tha_t12,0,0,0,0	boss_monster	達納托斯的恐懼	20776,1,3600000,5000,0
-tha_t12,0,0,0,0	boss_monster	達納托斯的怨懟	20777,1,3600000,5000,0
-tha_t12,0,0,0,0	boss_monster	達納托斯的後悔	20778,1,3600000,5000,0
+tha_t12,0,0,0,0	boss_monster	達納托斯的憤怒	20775,26,5000,5000,0
+tha_t12,0,0,0,0	boss_monster	達納托斯的恐懼	20776,15,5000,5000,0
+tha_t12,0,0,0,0	boss_monster	達納托斯的怨懟	20777,14,5000,5000,0
+tha_t12,0,0,0,0	boss_monster	達納托斯的後悔	20778,15,5000,5000,0
 tha_t12,0,0,0,0	monster	亡靈魔書	20780,3,5000,0,0
 
 //==================================================
 // thor_v01 - 托爾火山密穴1樓
 //==================================================
-thor_v01,0,0,0,0	boss_monster	機械劍士	1829,1,3600000,5000,0
-thor_v01,0,0,0,0	boss_monster	機械狙擊手	1830,1,3600000,5000,0
-thor_v01,0,0,0,0	boss_monster	熔岩蜥蜴	1831,1,3600000,5000,0
-thor_v01,0,0,0,0	boss_monster	不死鳥	1833,1,3600000,5000,0
+thor_v01,0,0,0,0	boss_monster	機械劍士	1829,10,5000,5000,0
+thor_v01,0,0,0,0	boss_monster	機械狙擊手	1830,10,5000,5000,0
+thor_v01,0,0,0,0	boss_monster	熔岩蜥蜴	1831,7,5000,5000,0
+thor_v01,0,0,0,0	boss_monster	不死鳥	1833,49,5000,5000,0
 thor_v01,0,0,0,0	monster	熔岩波利	1836,11,5000,0,0
 thor_v01,0,0,0,0	monster	熔岩魔	1837,27,5000,0,0
-thor_v01,0,0,0,0	boss_monster	狂徒	1839,1,3600000,5000,0
+thor_v01,0,0,0,0	boss_monster	狂徒	1839,1,5000,5000,0
 thor_v01,0,0,0,0	monster	狡猾不死鳥	2788,2,180000,0,0
 
 //==================================================
 // thor_v02 - 托爾火山密穴2樓
 //==================================================
 thor_v02,0,0,0,0	monster	卡浩	1072,10,5000,0,0
-thor_v02,0,0,0,0	boss_monster	機械劍士	1829,1,3600000,5000,0
-thor_v02,0,0,0,0	boss_monster	機械狙擊手	1830,1,3600000,5000,0
-thor_v02,0,0,0,0	boss_monster	熔岩蜥蜴	1831,1,3600000,5000,0
+thor_v02,0,0,0,0	boss_monster	機械劍士	1829,1,7200000,5000,0
+thor_v02,0,0,0,0	boss_monster	機械狙擊手	1830,1,7200000,5000,0
+thor_v02,0,0,0,0	boss_monster	熔岩蜥蜴	1831,1,5000,5000,0
 thor_v02,0,0,0,0	monster	熔岩波利	1836,10,5000,0,0
 thor_v02,0,0,0,0	monster	熔岩魔	1837,10,5000,0,0
 thor_v02,0,0,0,0	monster	敲擊者	1838,55,5000,0,0
@@ -4298,67 +4299,67 @@ thor_v02,0,0,0,0	monster	菁英敲擊者	2786,1,180000,0,0
 //==================================================
 // thor_v03 - 托爾火山密穴3樓
 //==================================================
-thor_v03,0,0,0,0	boss_monster	機械劍士	1829,1,3600000,5000,0
-thor_v03,0,0,0,0	boss_monster	機械狙擊手	1830,1,3600000,5000,0
-thor_v03,0,0,0,0	boss_monster	熔岩蜥蜴	1831,1,3600000,5000,0
+thor_v03,0,0,0,0	boss_monster	機械劍士	1829,21,5000,5000,0
+thor_v03,0,0,0,0	boss_monster	機械狙擊手	1830,21,5000,5000,0
+thor_v03,0,0,0,0	boss_monster	熔岩蜥蜴	1831,66,5000,5000,0
 thor_v03,0,0,0,0	boss_monster	伊夫利特	1832,1,3600000,5000,0
-thor_v03,0,0,0,0	boss_monster	不死鳥	1833,1,3600000,5000,0
-thor_v03,0,0,0,0	boss_monster	狂徒	1839,1,3600000,5000,0
+thor_v03,0,0,0,0	boss_monster	不死鳥	1833,44,5000,5000,0
+thor_v03,0,0,0,0	boss_monster	狂徒	1839,5,5000,5000,0
 thor_v03,0,0,0,0	monster	狡猾熔岩蜥蜴	2675,2,180000,0,0
 
 //==================================================
 // tra_fild - 普隆德拉郊外訓練場
 //==================================================
-tra_fild,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,3600000,5000,0
-tra_fild,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,3600000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,5000,5000,0
+tra_fild,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,5000,5000,0
 
 //==================================================
 // tra_fild01 - 普隆德拉郊外基本訓練場
 //==================================================
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,3600000,5000,0
-tra_fild01,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,3600000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(小型)	21064,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(中型)	21065,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(大型)	21066,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(無型)	21067,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(龍族)	21068,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(動物型)	21069,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(人類型)	21070,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(昆蟲型)	21071,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(魚貝型)	21072,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(惡魔型)	21073,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(植物型)	21074,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(天使型)	21075,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(不死型)	21076,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(無屬性)	21077,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(水屬性)	21078,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(地屬性)	21079,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(火屬性)	21080,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(風屬性)	21081,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(毒屬性)	21082,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(聖屬性)	21083,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(暗屬性)	21084,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(念屬性)	21085,1,5000,5000,0
+tra_fild01,0,0,0,0	boss_monster	測試用魔物(不死屬性)	21086,1,5000,5000,0
 tra_fild01,0,0,0,0	monster	測試用魔物(玩家人類型)	21087,1,5000,0,0
 tra_fild01,0,0,0,0	monster	測試用魔物(喵族)	21088,1,5000,0,0
 tra_fild01,0,0,0,0	monster	허수아비(소형)	22551,1,5000,0,0	// fallback:ko
@@ -4506,7 +4507,7 @@ treasure02,0,0,0,0	monster	海葵	1068,1,300000,0,0
 treasure02,0,0,0,0	monster	庫克雷	1070,20,5000,0,0
 treasure02,0,0,0,0	monster	邪骸海盜	1071,40,5000,0,0
 treasure02,0,0,0,0	boss_monster	海盜之王	1112,1,3600000,5000,0
-treasure02,0,0,0,0	boss_monster	幽靈波利	1120,1,3600000,5000,0
+treasure02,0,0,0,0	boss_monster	幽靈波利	1120,1,1980000,5000,0
 treasure02,0,0,0,0	monster	白幽靈	1179,10,5000,0,0
 treasure02,0,0,0,0	monster	邪惡箱	1191,1,3600000,0,0
 treasure02,0,0,0,0	monster	迅捷鬼水手骷髏	2676,1,300000,0,0
@@ -4697,7 +4698,7 @@ ve_fild01,0,0,0,0	monster	黃草	1081,10,5000,0,0
 ve_fild01,0,0,0,0	monster	光芒草	1083,1,5000,0,0
 ve_fild01,0,0,0,0	monster	邪惡噬人花	1780,34,5000,0,0
 ve_fild01,0,0,0,0	monster	茅膏菜	1781,34,5000,0,0
-ve_fild01,0,0,0,0	boss_monster	瘋狂鬣狗	1783,1,3600000,5000,0
+ve_fild01,0,0,0,0	boss_monster	瘋狂鬣狗	1783,60,5000,5000,0
 ve_fild01,0,0,0,0	monster	石頭波利	1784,34,5000,0,0
 ve_fild01,0,0,0,0	boss_monster	阿特羅斯	1785,1,3600000,5000,0
 ve_fild01,0,0,0,0	monster	狡猾瘋狂鬣狗	2828,1,180000,0,0
@@ -4709,7 +4710,7 @@ ve_fild02,0,0,0,0	monster	紅草	1078,10,5000,0,0
 ve_fild02,0,0,0,0	monster	黃草	1081,10,5000,0,0
 ve_fild02,0,0,0,0	monster	邪惡噬人花	1780,27,5000,0,0
 ve_fild02,0,0,0,0	monster	茅膏菜	1781,177,5000,0,0
-ve_fild02,0,0,0,0	boss_monster	瘋狂鬣狗	1783,1,3600000,5000,0
+ve_fild02,0,0,0,0	boss_monster	瘋狂鬣狗	1783,13,5000,5000,0
 ve_fild02,0,0,0,0	boss_monster	阿特羅斯	1785,1,3600000,5000,0
 ve_fild02,0,0,0,0	monster	雄壯茅膏菜	2844,2,180000,0,0
 
@@ -4730,7 +4731,7 @@ ve_fild04,0,0,0,0	monster	藍草	1079,3,5000,0,0
 ve_fild04,0,0,0,0	monster	黃草	1081,10,5000,0,0
 ve_fild04,0,0,0,0	monster	邪惡噬人花	1780,110,5000,0,0
 ve_fild04,0,0,0,0	monster	茅膏菜	1781,55,5000,0,0
-ve_fild04,0,0,0,0	boss_monster	瘋狂鬣狗	1783,1,3600000,5000,0
+ve_fild04,0,0,0,0	boss_monster	瘋狂鬣狗	1783,22,5000,5000,0
 ve_fild04,0,0,0,0	monster	狡猾邪惡噬人花	2738,2,180000,0,0
 
 //==================================================
@@ -4796,7 +4797,7 @@ vr_bob,0,0,0,0	monster	조개	21861,10,5000,0,0	// fallback:ko
 //==================================================
 xmas_dun01,0,0,0,0	monster	波利	1002,12,5000,0,0
 xmas_dun01,0,0,0,0	monster	波波利	1031,24,5000,0,0
-xmas_dun01,0,0,0,0	boss_monster	波利之王	1090,1,3600000,5000,0
+xmas_dun01,0,0,0,0	boss_monster	波利之王	1090,1,1800000,5000,0
 xmas_dun01,0,0,0,0	boss_monster	天使波利	1096,1,3600000,5000,0
 xmas_dun01,0,0,0,0	monster	土波利	1113,12,5000,0,0
 xmas_dun01,0,0,0,0	monster	冰波利	1242,24,5000,0,0
